@@ -68,7 +68,7 @@ const EnrolList = () => {
     e.preventDefault();
     const  items = [];
     items.push({
-      fname: {enteredNombre},
+      fname: enteredNombre,
       lname: enteredLastName,
       program: enteredProgram,
       email: enteredEmail,
