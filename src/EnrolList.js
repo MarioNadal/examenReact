@@ -39,17 +39,17 @@ const columns = [
   },
 ];
 
-const  items = [];
-
 const EnrolList = () => {
   const [enteredNombre, setEnteredNombre] = useState('');
   const [enteredLastName, setEnteredLastName] = useState('')
-  const [enteredProgram, setEnteredProgram] = useState('')
+  const [enteredProgram, setEnteredProgram] = useState('UG')
   const [enteredEmail, setEnteredEmail] = useState('')
 
   const [nombreIncorrecto, setNombreIncorrecto] = useState('');
   const [lastNameIncorrecto, setLastNameIncorrecto] = useState('')
   const [emailIncorrecto, setEmailIncorrecto] = useState('')
+
+  const [items, addItems] = useState([{key:1, fname: "Mario", lname: "Nadal Ara", program:"PG", email:"mario@gmail.com"}])
 
   function updateNombre(event){
     setEnteredNombre(event.target.value)
@@ -62,17 +62,6 @@ const EnrolList = () => {
   }
   function updateEmail(event){
     setEnteredEmail(event.target.value)
-  }
-
-  const handleSubmit=(e) =>{
-    e.preventDefault();
-    const  items = [];
-    items.push({
-      fname: enteredNombre,
-      lname: enteredLastName,
-      program: enteredProgram,
-      email: enteredEmail,
-    })
   }
 
   const validateTodo = useCallback(
@@ -109,6 +98,19 @@ const EnrolList = () => {
   )
 
 
+  const enviarDatos = (e) => {
+    e.preventDefault();
+    addItems([
+      ...items,
+        {key: 1,
+        fname: enteredNombre,
+        lname: enteredLastName,
+        program: enteredProgram,
+        email: enteredEmail
+  }])
+  }
+
+
   return (
     <div className="enrolList">
       <form className="form">
@@ -133,7 +135,7 @@ const EnrolList = () => {
           <p></p>
         </div>
         <p></p>
-        <button type ='submit' onClick={handleSubmit} id="buttonEnviar">Enviar</button>
+        <button type ='submit' onClick={enviarDatos} id="buttonEnviar">Enviar</button>
         <p></p>
       </form>
       <DetailsList items={items} columns={columns} />
