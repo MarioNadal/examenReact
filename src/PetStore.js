@@ -11,10 +11,10 @@ async function fetchAnimales(url){
 
 function PetStore() {
   const [loadedAnimal, setLoadedAnimal] = useState([]);
-  const [animal, setAnimal] = useState("cat");
+  const [animal, setAnimal] = useState("albums");
   const [numPagina, setNumPagina] = useState(1);
 
-  const url = "http://petstore-demo-endpoint.execute-api.com/petstore/pets?type="+animal+"&page=1";
+  const url = "https://jsonplaceholder.typicode.com/"+animal;
 
   useEffect(function(){
     fetchAnimales(url).then((fetchAnimales)=> setLoadedAnimal(fetchAnimales))
@@ -31,15 +31,15 @@ function PetStore() {
   return (
     <div>
         <div className='button'>
-        <button className='selected' onClick={()=>setAnimal("cat")}>Cats</button>
-        <button className='no_selected' onClick={()=>setAnimal("dog")}>Dogs</button>
-        <button className='no_selected' onClick={()=>setAnimal("fish")}>Fishs</button>
+        <button className='no_selected' onClick={()=>setAnimal("albums")}>Albums</button>
+        <button className='no_selected' onClick={()=>setAnimal("todos")}>Todos</button>
+        <button className='no_selected' onClick={()=>setAnimal("posts")}>Posts</button>
         </div>
         <ul> 
           {loadedAnimal.map((animall)=> (
             <div>
             <li className='title'><span>id</span><span>Precio</span></li>
-            <li className='odd'><span>{animall.id}</span><span>{animall.price}</span></li>
+            <li className='odd'><span>{animall.id}</span><span>{animall.title}</span></li>
             </div>
             ))}
         </ul>
